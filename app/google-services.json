@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "349377178565",
+    "project_id": "dad-jokes-3c085",
+    "storage_bucket": "dad-jokes-3c085.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:349377178565:android:f87f7914d086117a8ef9ac",
+        "android_client_info": {
+          "package_name": "com.thezayin.dadjokes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUUfdaefJzyLQpz-1I2b6Xt1lu6GSifKM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
