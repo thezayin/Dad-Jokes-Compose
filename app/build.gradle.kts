@@ -103,4 +103,8 @@ dependencies {
     implementation(libs.firebase.messaging)
     implementation(libs.firebase.inappmessaging.display)
     implementation(libs.firebase.config)
+
+    implementation(libs.slf4j.api)
+    implementation(libs.slf4j.simple)
+    implementation (libs.androidx.work.runtime)
 }

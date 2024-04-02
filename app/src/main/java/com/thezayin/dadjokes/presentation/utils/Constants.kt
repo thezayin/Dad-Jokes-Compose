@@ -8,4 +8,5 @@ object Constants {
         "https://dadjokestermsandconditions.blogspot.com/2024/03/terms-and-conditions-effective-date-29.html"
     const val ABOUT_US_URL =
         "https://bluelockaboutus.blogspot.com/2024/03/about-us-welcome-to-blue-lock-your.html"
+    const val TOPIC = "Dad-Jokes"
 }
