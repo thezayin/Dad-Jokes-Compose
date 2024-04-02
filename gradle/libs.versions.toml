@@ -24,12 +24,16 @@ firebaseCrashlyticsGradle = "2.9.9"
 firebasePerf = "20.5.2"
 perfPlugin = "1.4.2"
 firebaseAppdistributionGradle = "4.2.0"
-firebaseMessaging = "23.4.1"
+firebaseMessaging = "20.1.7"
 firebaseInappmessagingDisplay = "20.4.1"
 firebaseConfig = "21.6.3"
+slf4jApi = "2.0.5"
+slf4jSimple = "1.6.1"
+workRuntime = "2.9.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-work-runtime = { module = "androidx.work:work-runtime", version.ref = "workRuntime" }
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -73,6 +77,8 @@ firebase-appdistribution-gradle = { group = "com.google.firebase", name = "fireb
 firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebaseMessaging" }
 firebase-inappmessaging-display = { group = "com.google.firebase", name = "firebase-inappmessaging-display", version.ref = "firebaseInappmessagingDisplay" }
 firebase-config = { group = "com.google.firebase", name = "firebase-config", version.ref = "firebaseConfig" }
+slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4jApi" }
+slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4jSimple" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
