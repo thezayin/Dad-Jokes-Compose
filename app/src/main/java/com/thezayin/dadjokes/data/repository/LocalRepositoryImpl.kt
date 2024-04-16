@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class LocalRepositoryImpl(
-    private val database: Database
+    database: Database
 ) : LocalRepository {
     private val daoImpl = database.dao()
 
