@@ -22,4 +22,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Dad Jokes"
 include(":app")
- 
+include(":analytics")

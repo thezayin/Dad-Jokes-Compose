@@ -2,7 +2,7 @@ package com.thezayin.dadjokes.presentation.application
 
 import android.app.Application
 import com.google.firebase.FirebaseApp
-import com.thezayin.dadjokes.data.di.appModule
+import com.thezayin.dadjokes.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

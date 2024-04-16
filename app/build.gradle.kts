@@ -104,6 +104,12 @@ dependencies {
     implementation(libs.firebase.inappmessaging.display)
     implementation(libs.firebase.config)
 
+    //room database
+    implementation (libs.androidx.room.ktx)
+    ksp (libs.androidx.room.compiler)
+    implementation (libs.androidx.room.paging)
+    implementation (libs.androidx.room.runtime)
+
     implementation(libs.slf4j.api)
     implementation(libs.slf4j.simple)
     implementation (libs.androidx.work.runtime)
