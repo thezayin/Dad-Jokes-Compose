@@ -8,6 +8,7 @@ import android.app.PendingIntent.FLAG_ONE_SHOT
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import android.util.Log
@@ -17,9 +18,8 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.thezayin.dadjokes.R
 import com.thezayin.dadjokes.presentation.activity.MainActivity
+import com.thezayin.dadjokes.presentation.utils.Constants.CHANNEL_ID
 import kotlin.random.Random
-
-private const val CHANNEL_ID = "my_channel"
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
@@ -59,7 +59,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         )
         val notification = NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle(message.data["title"])
-            .setContentText(message.data["message"])
+            .setContentText(message.data["text"])
+            .setLargeIcon(message.data["image"]?.let {
+                BitmapFactory.decodeResource(resources, R.drawable.ic_main)
+            })
             .setSmallIcon(R.drawable.ic_main)
             .setAutoCancel(true)
             .setContentIntent(pendingIntent)
