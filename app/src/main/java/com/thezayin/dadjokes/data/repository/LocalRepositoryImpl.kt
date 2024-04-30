@@ -2,7 +2,8 @@ package com.thezayin.dadjokes.data.repository
 
 import com.thezayin.dadjokes.data.local.database.Database
 import com.thezayin.dadjokes.domain.local.repository.LocalRepository
-import com.thezayin.dadjokes.domain.remote.model.JokesModel
+import com.thezayin.dadjokes.domain.model.JokesModel
+import com.thezayin.core.utils.Response
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -19,11 +20,13 @@ class LocalRepositoryImpl(
         }
     }
 
-    override suspend fun getJokeById(id: String): Flow<JokesModel> = flow {
+    override suspend fun getJokeById(id: String): Flow<Response<JokesModel>> = flow {
         try {
-            emit(daoImpl.getJokeById(id))
+            emit(Response.Loading)
+            val response = daoImpl.getJokeById(id)
+            emit(Response.Success(response))
         } catch (e: Exception) {
-            emit(JokesModel(id = "", joke = "No joke found", status = 0))
+            emit(Response.Error(e.localizedMessage ?: "Unexpected error occurred"))
         }
     }
 

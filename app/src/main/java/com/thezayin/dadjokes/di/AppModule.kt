@@ -1,7 +1,10 @@
 package com.thezayin.dadjokes.di
 
-import com.thezayin.dadjokes.data.repository.LocalRepositoryImpl
+import android.os.Build
+import androidx.annotation.RequiresApi
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.thezayin.dadjokes.data.remote.ApiService
+import com.thezayin.dadjokes.data.repository.LocalRepositoryImpl
 import com.thezayin.dadjokes.data.repository.RemoteRepositoryImpl
 import com.thezayin.dadjokes.domain.local.repository.LocalRepository
 import com.thezayin.dadjokes.domain.local.usecase.DeleteAllJokesUseCase
@@ -17,6 +20,8 @@ import com.thezayin.dadjokes.domain.local.usecase.SaveJokeUseCaseImpl
 import com.thezayin.dadjokes.domain.remote.repository.RemoteRepository
 import com.thezayin.dadjokes.domain.remote.usecase.RemoteUseCase
 import com.thezayin.dadjokes.domain.remote.usecase.RemoteUseCaseImpl
+import com.thezayin.dadjokes.presentation.activity.MainViewModel
+import com.thezayin.dadjokes.presentation.activity.appupdate.UpdateManager
 import com.thezayin.dadjokes.presentation.home.HomeViewModel
 import com.thezayin.dadjokes.presentation.savedjokes.SaveViewModel
 import org.koin.android.ext.koin.androidContext
@@ -26,9 +31,10 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
+@RequiresApi(Build.VERSION_CODES.P)
 val appModule = module {
     single { provideDatabase(androidContext()) }
-
+    single { UpdateManager(androidContext()) }
     singleOf(::ApiService)
     singleOf(::provideDao)
 
@@ -42,6 +48,7 @@ val appModule = module {
     factoryOf(::DeleteJokeUseCaseImpl) bind DeleteJokeUseCase::class
     factoryOf(::DeleteAllJokesUseCaseImpl) bind DeleteAllJokesUseCase::class
 
+    viewModelOf(::MainViewModel)
     viewModelOf(::HomeViewModel)
     viewModelOf(::SaveViewModel)
 }

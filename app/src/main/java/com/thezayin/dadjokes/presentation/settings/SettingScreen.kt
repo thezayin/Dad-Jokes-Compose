@@ -16,9 +16,8 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.thezayin.dadjokes.R
-import com.thezayin.dadjokes.presentation.settings.component.LegalListComponent
-import com.thezayin.dadjokes.presentation.settings.component.OtherListComponent
+import com.thezayin.core.R
+import com.thezayin.dadjokes.presentation.settings.component.SettingListComponent
 import com.thezayin.dadjokes.presentation.settings.component.SettingScreenTopBar
 
 @Destination
@@ -30,7 +29,8 @@ fun SettingScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .navigationBarsPadding().statusBarsPadding()
+            .navigationBarsPadding()
+            .statusBarsPadding()
             .background(color = colorResource(id = R.color.background))
     ) {
         Column(
@@ -39,14 +39,14 @@ fun SettingScreen(
                 .fillMaxSize()
         ) {
             SettingScreenTopBar(modifier = Modifier, navigator = navigator)
-            OtherListComponent(modifier = Modifier, navigator = navigator)
-            LegalListComponent(modifier = Modifier)
+            SettingListComponent(modifier = Modifier, navigator = navigator)
         }
         Text(
             text = "v ${
                 context.packageManager
                     .getPackageInfo(context.packageName, 0).versionName
             }",
+            color = colorResource(id = R.color.text_color),
             modifier = Modifier
                 .padding(10.dp)
                 .align(Alignment.BottomCenter)

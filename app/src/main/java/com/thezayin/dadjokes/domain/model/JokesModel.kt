@@ -1,8 +1,8 @@
-package com.thezayin.dadjokes.domain.remote.model
+package com.thezayin.dadjokes.domain.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.thezayin.dadjokes.presentation.utils.Constants
+import com.thezayin.core.utils.Constants
 import kotlinx.serialization.Serializable
 
 @Entity(tableName = Constants.JOKES_TABLE)

@@ -4,12 +4,14 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.thezayin.ads.GoogleManager
 import com.thezayin.dadjokes.domain.local.usecase.DeleteAllJokesUseCase
 import com.thezayin.dadjokes.domain.local.usecase.DeleteJokeUseCase
 import com.thezayin.dadjokes.domain.local.usecase.GetAllJokesUseCase
 import com.thezayin.dadjokes.domain.local.usecase.GetJokeUseCase
 import com.thezayin.dadjokes.domain.local.usecase.SaveJokeUseCase
-import com.thezayin.dadjokes.domain.remote.model.JokesModel
+import com.thezayin.dadjokes.domain.model.JokesModel
+import com.thezayin.core.utils.Response
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -21,7 +23,8 @@ class SaveViewModel(
     private val deleteJokeUseCase: DeleteJokeUseCase,
     private val deleteAllJokesUseCase: DeleteAllJokesUseCase,
     private val saveJokeUseCase: SaveJokeUseCase,
-    private val getJokeUseCase: GetJokeUseCase
+    private val getJokeUseCase: GetJokeUseCase,
+    val googleManager: GoogleManager
 ) : ViewModel() {
 
     private val _getAllJokes = MutableStateFlow(GetAllJokeState())
@@ -127,23 +130,43 @@ class SaveViewModel(
 
     fun getJokeById(id: String) = viewModelScope.launch {
         try {
-            _isLoading.update {
-                it.copy(
-                    isLoading = mutableStateOf(true)
-                )
-            }
-            delay(2000L)
             getJokeUseCase(id).collect { joke ->
-                _getJokeById.update {
-                    it.copy(
-                        joke = joke
-                    )
+                when (joke) {
+                    is Response.Success -> {
+                        delay(2000L)
+                        _getJokeById.update {
+                            it.copy(
+                                joke = it.joke.copy(
+                                    joke = joke.data.joke,
+                                    id = joke.data.id,
+                                    status = joke.data.status
+                                )
+                            )
+                        }
+
+                        _isLoading.update {
+                            it.copy(
+                                isLoading = mutableStateOf(false)
+                            )
+                        }
+                    }
+
+                    is Response.Loading -> {
+                        _isLoading.update {
+                            it.copy(
+                                isLoading = mutableStateOf(true)
+                            )
+                        }
+                    }
+
+                    is Response.Error -> {
+                        _isLoading.update {
+                            it.copy(
+                                isLoading = mutableStateOf(false)
+                            )
+                        }
+                    }
                 }
-            }
-            _isLoading.update {
-                it.copy(
-                    isLoading = mutableStateOf(false)
-                )
             }
         } catch (e: Exception) {
             e.printStackTrace()

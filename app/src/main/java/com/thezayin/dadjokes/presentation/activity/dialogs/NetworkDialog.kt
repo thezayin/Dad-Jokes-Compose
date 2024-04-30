@@ -16,7 +16,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
@@ -25,14 +24,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
-import com.thezayin.dadjokes.R
+import com.thezayin.core.R
+
 
 @Composable
 fun NetworkDialog(showDialog: (Boolean) -> Unit) {
     Dialog(onDismissRequest = {}) {
         Surface(
             shape = RoundedCornerShape(16.dp),
-            color = Color.White
+            color = colorResource(id = R.color.background)
         ) {
             Box(
                 contentAlignment = Alignment.Center
@@ -43,7 +43,7 @@ fun NetworkDialog(showDialog: (Boolean) -> Unit) {
                     Text(
                         text = "No internet connection",
                         fontFamily = FontFamily(Font(R.font.noto_sans_regular)),
-                        color = colorResource(id = R.color.black),
+                        color = colorResource(id = R.color.text_color),
                         fontSize = 16.sp,
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center

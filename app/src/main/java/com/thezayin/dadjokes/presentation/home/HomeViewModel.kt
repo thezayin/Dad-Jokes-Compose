@@ -4,16 +4,19 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.thezayin.dadjokes.domain.remote.model.JokesModel
+import com.thezayin.dadjokes.domain.model.JokesModel
 import com.thezayin.dadjokes.domain.remote.usecase.RemoteUseCase
-import com.thezayin.dadjokes.presentation.utils.Response
+import com.thezayin.core.utils.Response
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class HomeViewModel(private val apiCall: RemoteUseCase) : ViewModel() {
+class HomeViewModel(
+    private val apiCall: RemoteUseCase,
+) :
+    ViewModel() {
 
     private val _jokeText = MutableStateFlow(GetJokeState())
     val jokeText = _jokeText.asStateFlow()
