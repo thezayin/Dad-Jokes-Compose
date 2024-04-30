@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="purple">#8c52fe</color>
+    <color name="brown_level_1">#7d5260</color>
+
+    <color name="yellow_level_1">#FFD9A000</color>
+
+    <color name="blue_level_1">#53bdea</color>
+
+    <color name="green_level_1">#015c4b</color>
+    <color name="green_level_2">#668076</color>
+
+    <color name="orange_level_1">#e3481a</color>
+
+    <color name="grey_level_5">#DCDEE6</color>
+    <color name="grey_level_2">#777777</color>
+
+    <color name="icon_colors">#000000</color>
+    <color name="background">#FFFFFFFF</color>
+    <color name="text_color">#535763</color>
+    <color name="setting_card_color">#DCDEE6</color>
+    <color name="home_card_color">#E6EEF8</color>
+
+    <color name="gradient_start">#2A21DA</color>
+    <color name="gradient_end">#A907B2</color>
+
+    <color name="gradient_start_2">#FF9612</color>
+    <color name="gradient_end_2">#D04287</color>
+
+    <color name="gradient_start_3">#4DFF9612</color>
+    <color name="gradient_end_3">#4DD04287</color>
+    
+    <color name="iap_button_color">#9A0AB7</color>
+</resources>

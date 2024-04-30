@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.thezayin.dadjokes.domain.remote.model.JokesModel
+import com.thezayin.dadjokes.domain.model.JokesModel
 
 @Dao
 interface Dao {

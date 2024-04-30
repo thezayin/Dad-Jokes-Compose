@@ -16,7 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.thezayin.dadjokes.R
+import com.thezayin.core.R
 import com.thezayin.dadjokes.presentation.savedjokes.SaveViewModel
 
 @Composable
@@ -27,14 +27,14 @@ fun DeleteComponent(
         modifier = Modifier
             .fillMaxWidth()
             .background(color = colorResource(id = R.color.background))
-            .padding(top = 30.dp, bottom = 5.dp)
+            .padding(bottom = 5.dp)
             .padding(horizontal = 20.dp),
         horizontalArrangement = Arrangement.End
     ) {
         Text(
             text = "Delete all",
             fontWeight = FontWeight.Light,
-            color = colorResource(id = R.color.black),
+            color = colorResource(id = R.color.text_color),
             fontSize = 10.sp,
             fontFamily = FontFamily(Font(R.font.noto_sans_regular)),
             textDecoration = TextDecoration.Underline,

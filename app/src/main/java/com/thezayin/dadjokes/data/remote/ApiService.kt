@@ -2,8 +2,8 @@ package com.thezayin.dadjokes.data.remote
 
 
 import android.util.Log
-import com.thezayin.dadjokes.domain.remote.model.JokesModel
-import com.thezayin.dadjokes.presentation.utils.Constants.BASE_URL
+import com.thezayin.dadjokes.domain.model.JokesModel
+import com.thezayin.core.utils.Constants.BASE_URL
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import io.ktor.client.features.DefaultRequest

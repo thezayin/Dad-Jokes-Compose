@@ -2,6 +2,8 @@ package com.thezayin.dadjokes.presentation.application
 
 import android.app.Application
 import com.google.firebase.FirebaseApp
+import com.thezayin.ads.di.adModule
+import com.thezayin.analytics.di.analyticsHelperModule
 import com.thezayin.dadjokes.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -15,6 +17,8 @@ class App : Application() {
             androidLogger()
             androidContext(this@App)
             modules(appModule)
+            modules(adModule)
+            modules(analyticsHelperModule)
         }
     }
 }

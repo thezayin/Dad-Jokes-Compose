@@ -1,7 +1,7 @@
 package com.thezayin.dadjokes.domain.local.usecase
 
 import com.thezayin.dadjokes.domain.local.repository.LocalRepository
-import com.thezayin.dadjokes.domain.remote.model.JokesModel
+import com.thezayin.dadjokes.domain.model.JokesModel
 import kotlinx.coroutines.flow.Flow
 
 interface GetAllJokesUseCase : suspend () -> Flow<List<JokesModel>>
