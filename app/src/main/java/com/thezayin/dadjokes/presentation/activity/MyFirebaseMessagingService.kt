@@ -15,8 +15,8 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.thezayin.core.utils.Constants.CHANNEL_ID
 import com.thezayin.dadjokes.R
+import com.thezayin.framework.utils.Constants.CHANNEL_ID
 import kotlin.random.Random
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {

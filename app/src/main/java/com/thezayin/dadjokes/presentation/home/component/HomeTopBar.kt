@@ -20,7 +20,7 @@ import com.thezayin.dadjokes.presentation.destinations.SavedJokesScreenDestinati
 import com.thezayin.dadjokes.presentation.destinations.SettingScreenDestination
 
 @Composable
-fun HomeTopBar(modifier: Modifier, navigator: DestinationsNavigator) {
+fun HomeTopBar(modifier: Modifier, navigator: DestinationsNavigator?) {
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -34,7 +34,7 @@ fun HomeTopBar(modifier: Modifier, navigator: DestinationsNavigator) {
             modifier = Modifier
                 .size(24.dp)
                 .clickable {
-                    navigator.navigate(SettingScreenDestination)
+                    navigator?.navigate(SettingScreenDestination)
                 }
         )
         Row(
@@ -47,7 +47,7 @@ fun HomeTopBar(modifier: Modifier, navigator: DestinationsNavigator) {
                     .padding(end = 20.dp)
                     .size(25.dp)
                     .clickable {
-                        navigator.navigate(SavedJokesScreenDestination)
+                        navigator?.navigate(SavedJokesScreenDestination)
                     }
             )
             PremiumButton()

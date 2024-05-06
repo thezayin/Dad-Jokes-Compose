@@ -27,7 +27,6 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.thezayin.analytics.events.AnalyticsEvent
 import com.thezayin.analytics.helpers.LocalAnalyticsHelper
 import com.thezayin.core.R
-
 import com.thezayin.dadjokes.presentation.activity.MainViewModel
 import com.thezayin.dadjokes.presentation.activity.component.ComposableLifecycle
 import com.thezayin.dadjokes.presentation.activity.dialogs.LoadingDialog
@@ -36,8 +35,8 @@ import com.thezayin.dadjokes.presentation.home.component.HomeTopBar
 import com.thezayin.dadjokes.presentation.home.component.JokeTextCard
 import com.thezayin.dadjokes.presentation.home.component.NextJokeButton
 import com.thezayin.dadjokes.presentation.savedjokes.SaveViewModel
-import com.thezayin.core.utils.nativead.GoogleNativeAd
-import com.thezayin.core.utils.nativead.GoogleNativeAdStyle
+import com.thezayin.framework.nativead.GoogleNativeAd
+import com.thezayin.framework.nativead.GoogleNativeAdStyle
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
@@ -111,13 +110,14 @@ fun HomeScreen(
                 verticalArrangement = Arrangement.Bottom
             ) {
                 NextJokeButton(viewModel = homeViewModel, modifier = Modifier)
-                GoogleNativeAd(
-                    modifier = Modifier
-                        .padding(top = 20.dp)
-                        .fillMaxWidth(),
-                    nativeAd = nativeAd.value,
-                    style = GoogleNativeAdStyle.Small
-                )
+                if (mainViewModel.remoteConfig.showNativeAdOnHome) {
+                    GoogleNativeAd(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        nativeAd = nativeAd.value,
+                        style = GoogleNativeAdStyle.Small
+                    )
+                }
             }
         }
     ) { paddingValues ->

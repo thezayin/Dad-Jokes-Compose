@@ -17,10 +17,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.thezayin.core.R
-import com.thezayin.core.utils.Constants
-import com.thezayin.core.utils.Constants.ABOUT_US_URL
-import com.thezayin.core.utils.openLink
-import com.thezayin.core.utils.sendMail
+import com.thezayin.framework.utils.Constants
+import com.thezayin.framework.utils.Constants.ABOUT_US_URL
+import com.thezayin.framework.extension.functions.openLink
+import com.thezayin.framework.extension.functions.sendMail
 
 @Composable
 fun SettingListComponent(modifier: Modifier, navigator: DestinationsNavigator) {

@@ -13,7 +13,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.thezayin.core.R
@@ -21,8 +20,8 @@ import com.thezayin.dadjokes.presentation.activity.MainViewModel
 import com.thezayin.dadjokes.presentation.activity.component.SavedScreenTopBar
 import com.thezayin.dadjokes.presentation.activity.dialogs.LoadingDialog
 import com.thezayin.dadjokes.presentation.savedjokes.component.JokesList
-import com.thezayin.core.utils.nativead.GoogleNativeAd
-import com.thezayin.core.utils.nativead.GoogleNativeAdStyle
+import com.thezayin.framework.nativead.GoogleNativeAd
+import com.thezayin.framework.nativead.GoogleNativeAdStyle
 import org.koin.compose.koinInject
 
 @Destination
@@ -49,12 +48,14 @@ fun SavedJokesScreen(
             SavedScreenTopBar(navigator = navigator, modifier = Modifier)
         },
         bottomBar = {
-            GoogleNativeAd(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                nativeAd = nativeAd.value,
-                style = GoogleNativeAdStyle.Small
-            )
+            if (mainViewModel.remoteConfig.showNativeAdOnSavedScreen) {
+                GoogleNativeAd(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    nativeAd = nativeAd.value,
+                    style = GoogleNativeAdStyle.Small
+                )
+            }
         }
     ) { padding ->
         Column(
@@ -66,7 +67,8 @@ fun SavedJokesScreen(
             JokesList(
                 saveViewModel = saveViewModel,
                 navigator = navigator,
-                mainViewModel = mainViewModel
+                mainViewModel = mainViewModel,
+                remoteConfig = mainViewModel.remoteConfig
             )
         }
     }

@@ -3,7 +3,7 @@ package com.thezayin.dadjokes.data.repository
 import com.thezayin.dadjokes.data.local.database.Database
 import com.thezayin.dadjokes.domain.local.repository.LocalRepository
 import com.thezayin.dadjokes.domain.model.JokesModel
-import com.thezayin.core.utils.Response
+import com.thezayin.framework.utils.Response
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 

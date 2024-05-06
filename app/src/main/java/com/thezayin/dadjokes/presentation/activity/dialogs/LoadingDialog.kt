@@ -24,11 +24,10 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.Lifecycle
 import com.thezayin.core.R
-
 import com.thezayin.dadjokes.presentation.activity.MainViewModel
 import com.thezayin.dadjokes.presentation.activity.component.ComposableLifecycle
-import com.thezayin.core.utils.nativead.GoogleNativeAd
-import com.thezayin.core.utils.nativead.GoogleNativeAdStyle
+import com.thezayin.framework.nativead.GoogleNativeAd
+import com.thezayin.framework.nativead.GoogleNativeAdStyle
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
@@ -86,13 +85,15 @@ fun LoadingDialog(viewModel: MainViewModel) {
                     ) {
                         CircularProgressIndicator(color = colorResource(id = R.color.purple))
                     }
-                    GoogleNativeAd(
-                        modifier = Modifier
-                            .padding(top = 20.dp)
-                            .fillMaxWidth(),
-                        nativeAd = nativeAd.value,
-                        style = GoogleNativeAdStyle.Small
-                    )
+                    if (viewModel.remoteConfig.showNativeAdOnLoadingDialog) {
+                        GoogleNativeAd(
+                            modifier = Modifier
+                                .padding(top = 20.dp)
+                                .fillMaxWidth(),
+                            nativeAd = nativeAd.value,
+                            style = GoogleNativeAdStyle.Small
+                        )
+                    }
                 }
             }
         }

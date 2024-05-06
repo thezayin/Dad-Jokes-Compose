@@ -9,6 +9,13 @@
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>
 
+    <color name="ad_container_color">#F5F5F5</color>
+    <color name="ad_button_text_color">#FFFFFF</color>
+    <color name="ad_text_color">#FF000000</color>
+    <color name="ad_button_color">#8c52fe</color>
+    <color name="ad_tag_text_color">#F5F5F5</color>
+    <color name="ad_tag_color">#6FC8FB</color>
+
     <color name="purple">#8c52fe</color>
     <color name="brown_level_1">#7d5260</color>
 

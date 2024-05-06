@@ -31,7 +31,7 @@ fun NextJokeButton(viewModel: HomeViewModel, modifier: Modifier) {
         onClick = {
             viewModel.getRandomJoke()
         },
-        modifier = modifier
+        modifier = modifier .padding(bottom = 20.dp)
             .width(160.dp)
             .height(60.dp),
         shape = RoundedCornerShape(12.dp),
