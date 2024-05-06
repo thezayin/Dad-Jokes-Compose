@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-kapt")
 }
 
 android {
@@ -39,7 +40,6 @@ android {
 
     buildFeatures {
         compose = true
-        buildConfig = true
         dataBinding = true
     }
 }
@@ -78,6 +78,4 @@ dependencies {
     implementation(libs.firebase.messaging)
     implementation(libs.firebase.inappmessaging.display)
     implementation(libs.firebase.config)
-
-    api ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
 }

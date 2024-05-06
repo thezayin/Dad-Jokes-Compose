@@ -11,6 +11,4 @@ object Constants {
         "https://bluelockaboutus.blogspot.com/2024/03/about-us-welcome-to-blue-lock-your.html"
     const val TOPIC = "Dad-Jokes"
     const val CHANNEL_ID = "my_channel"
-    const val RECENTS = "Recents"
-    const val OVF_FOLDER = "PhotoTune"
 }

@@ -7,9 +7,6 @@ data class AnalyticsEvent(
     // Standard analytics types.
     object Types {
         const val SCREEN_VIEW = "screen_view" // (extras: SCREEN_NAME)
-        const val SELECT_ITEM = "select_item"
-        const val BUTTON_CLICK = "button_click"
-        const val SUBMIT_RATING = "submit_rating"
         const val AD_IMPRESSION = "ad_impression"
     }
 
@@ -31,10 +28,5 @@ data class AnalyticsEvent(
     object ParamKeys {
         const val SCREEN_NAME = "screen_name"
         const val AD_TYPE = "ad_type"
-        const val BUTTON_ID = "button_id"
-        const val ITEM_ID = "item_id"
-        const val ITEM_NAME = "item_name"
-        const val RATING_TYPE = "rating_type"
-        const val RATING_CONTENT = "rating_content"
     }
 }

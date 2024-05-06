@@ -21,14 +21,14 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.tasks.await
 
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION", "unused", "PrivatePropertyName")
 @RequiresApi(Build.VERSION_CODES.P)
 class UpdateManager(activity: Context) {
     private val versionCode =
         activity.packageManager.getPackageInfo(activity.packageName, 0).longVersionCode
     private val manager = AppUpdateManagerFactory.create(activity)
     private val remoteConfig = Firebase.remoteConfig
-    suspend fun updateType(): Int = runCatching {
+    private suspend fun updateType(): Int = runCatching {
         if (remoteConfig.getLong("force_update_version_code") == FirebaseRemoteConfig.DEFAULT_VALUE_FOR_LONG) {
             remoteConfig.fetch(0).await()
             remoteConfig.activate().await()
@@ -91,7 +91,7 @@ class UpdateManager(activity: Context) {
     }
 
     fun installUpdate() = manager.completeUpdate()
-    fun updateStatus(status: AppUpdateStatus) = _status.update { status }
+    private fun updateStatus(status: AppUpdateStatus) = _status.update { status }
 
     private val CHECK_UPDATE_FAILED = -1
 }
