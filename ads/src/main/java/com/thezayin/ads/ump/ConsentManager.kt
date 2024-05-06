@@ -8,7 +8,7 @@ import com.google.android.ump.FormError
 import com.google.android.ump.UserMessagingPlatform
 
 
-class ConsentManager(private val context: Context) {
+class ConsentManager(context: Context) {
     private val info = UserMessagingPlatform.getConsentInformation(context)
     private val debugSettings = ConsentDebugSettings.Builder(context).apply {
         setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_DISABLED)

@@ -1,7 +1,6 @@
 package com.thezayin.dadjokes.data.remote
 
 
-import android.util.Log
 import com.thezayin.dadjokes.domain.model.JokesModel
 import com.thezayin.framework.utils.Constants.BASE_URL
 import io.ktor.client.HttpClient
@@ -22,6 +21,7 @@ import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.contentType
 import kotlinx.serialization.json.Json
+import timber.log.Timber
 
 class ApiService {
 
@@ -53,7 +53,7 @@ class ApiService {
         install(Logging) {
             logger = object : Logger {
                 override fun log(message: String) {
-                    Log.i(TAG_KTOR_LOGGER, message)
+                    Timber.tag(TAG_KTOR_LOGGER).i(message)
                 }
             }
         }
@@ -64,7 +64,7 @@ class ApiService {
 
         install(ResponseObserver) {
             onResponse { response ->
-                Log.i(TAG_KTOR_HTTPS_STATUS_LOGGER, "Response: ${response.status.value}")
+                Timber.tag(TAG_KTOR_HTTPS_STATUS_LOGGER).i("Response: %s", response.status.value)
             }
         }
 

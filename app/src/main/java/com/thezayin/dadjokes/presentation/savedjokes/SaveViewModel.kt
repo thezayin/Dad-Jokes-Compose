@@ -65,27 +65,6 @@ class SaveViewModel(
         }
     }
 
-    fun deleteAllJokes() = viewModelScope.launch {
-        try {
-            _isLoading.update {
-                it.copy(
-                    isLoading = mutableStateOf(true)
-                )
-            }
-            delay(2000L)
-            deleteAllJokesUseCase().collect {
-                getAllJokes()
-            }
-            _isLoading.update {
-                it.copy(
-                    isLoading = mutableStateOf(false)
-                )
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-
     fun deleteJokeById(id: String) = viewModelScope.launch {
         try {
             _isLoading.update {
