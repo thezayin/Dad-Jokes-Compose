@@ -1,7 +1,4 @@
 # Dad Jokes App
-![splash screen](https://github.com/thezayin/Dad-Jokes-Compose/assets/140496836/1d3e4f68-1fad-4887-bea3-da0dac377743) ![Home Screen](https://github.com/thezayin/Dad-Jokes-Compose/assets/140496836/eb0e82e1-822d-4d28-a48c-ec551f7fea09)![Save Screen](https://github.com/thezayin/Dad-Jokes-Compose/assets/140496836/7934e795-424b-4036-a202-1ca0c807a958)
-
-
 
 🎉 Welcome to Dad Jokes, your ultimate source of laughter! Our app is meticulously crafted with modern Android development principles to deliver a seamless and delightful user experience.
 
