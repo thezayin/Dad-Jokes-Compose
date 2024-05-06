@@ -18,8 +18,8 @@ android {
         applicationId = "com.thezayin.dadjokes"
         minSdk = 24
         targetSdk = 34
-        versionCode = 3
-        versionName = "1.0.3"
+        versionCode = 4
+        versionName = "1.0.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -61,6 +61,7 @@ dependencies {
     implementation(project(":ads"))
     implementation(project(":core"))
     implementation(project(":analytics"))
+    implementation(project(":framework"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

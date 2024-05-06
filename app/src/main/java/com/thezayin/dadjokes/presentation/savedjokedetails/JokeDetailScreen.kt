@@ -29,8 +29,8 @@ import com.thezayin.dadjokes.presentation.activity.component.SavedScreenTopBar
 import com.thezayin.dadjokes.presentation.activity.dialogs.LoadingDialog
 import com.thezayin.dadjokes.presentation.home.component.JokeTextCard
 import com.thezayin.dadjokes.presentation.savedjokes.SaveViewModel
-import com.thezayin.core.utils.nativead.GoogleNativeAd
-import com.thezayin.core.utils.nativead.GoogleNativeAdStyle
+import com.thezayin.framework.nativead.GoogleNativeAd
+import com.thezayin.framework.nativead.GoogleNativeAdStyle
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
@@ -87,19 +87,21 @@ fun SavedJokeDetailScreen(
             SavedScreenTopBar(navigator = navigator, modifier = Modifier)
         },
         bottomBar = {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Bottom
-            ) {
-                GoogleNativeAd(
+            if (mainViewModel.remoteConfig.showAdOnSaveScreenSelection) {
+                Column(
                     modifier = Modifier
-                        .padding(top = 20.dp)
                         .fillMaxWidth(),
-                    nativeAd = nativeAd.value,
-                    style = GoogleNativeAdStyle.Small
-                )
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Bottom
+                ) {
+                    GoogleNativeAd(
+                        modifier = Modifier
+                            .padding(top = 20.dp)
+                            .fillMaxWidth(),
+                        nativeAd = nativeAd.value,
+                        style = GoogleNativeAdStyle.Small
+                    )
+                }
             }
         }
     ) { paddingValues ->

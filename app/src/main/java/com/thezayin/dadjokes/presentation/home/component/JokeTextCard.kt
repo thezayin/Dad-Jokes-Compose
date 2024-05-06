@@ -28,7 +28,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.thezayin.core.R
 import com.thezayin.dadjokes.domain.model.JokesModel
 import com.thezayin.dadjokes.presentation.savedjokes.SaveViewModel
-import com.thezayin.core.utils.textToSpeech
+import com.thezayin.framework.extension.functions.textToSpeech
 import timber.log.Timber
 import java.util.Locale
 
@@ -38,7 +38,7 @@ fun JokeTextCard(
     jokeModel: JokesModel,
     saveViewModel: SaveViewModel,
     from: String,
-    navigator: DestinationsNavigator,
+    navigator: DestinationsNavigator?,
     id: String?
 ) {
     val joke = jokeModel.joke
@@ -108,7 +108,7 @@ fun JokeTextCard(
                     } else {
                         id?.let {
                             saveViewModel.deleteJokeById(id)
-                            navigator.navigateUp()
+                            navigator?.navigateUp()
                         }
                     }
                 }

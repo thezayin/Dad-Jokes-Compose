@@ -23,8 +23,8 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.thezayin.core.R
-import com.thezayin.core.utils.copyText
-import com.thezayin.core.utils.share
+import com.thezayin.framework.extension.functions.copyText
+import com.thezayin.framework.extension.functions.share
 
 @Composable
 fun CardBottomButtons(

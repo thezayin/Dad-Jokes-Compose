@@ -2,7 +2,6 @@ package com.thezayin.dadjokes.di
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.thezayin.dadjokes.data.remote.ApiService
 import com.thezayin.dadjokes.data.repository.LocalRepositoryImpl
 import com.thezayin.dadjokes.data.repository.RemoteRepositoryImpl
@@ -24,6 +23,7 @@ import com.thezayin.dadjokes.presentation.activity.MainViewModel
 import com.thezayin.dadjokes.presentation.activity.appupdate.UpdateManager
 import com.thezayin.dadjokes.presentation.home.HomeViewModel
 import com.thezayin.dadjokes.presentation.savedjokes.SaveViewModel
+import com.thezayin.framework.remote.RemoteConfig
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.module.dsl.factoryOf
@@ -35,12 +35,12 @@ import org.koin.dsl.module
 val appModule = module {
     single { provideDatabase(androidContext()) }
     single { UpdateManager(androidContext()) }
+    singleOf(::RemoteConfig)
     singleOf(::ApiService)
     singleOf(::provideDao)
 
     factoryOf(::LocalRepositoryImpl) bind LocalRepository::class
     factoryOf(::RemoteRepositoryImpl) bind RemoteRepository::class
-
     factoryOf(::RemoteUseCaseImpl) bind RemoteUseCase::class
     factoryOf(::SaveJokeUseCaseImpl) bind SaveJokeUseCase::class
     factoryOf(::GetJokeUseCaseImpl) bind GetJokeUseCase::class

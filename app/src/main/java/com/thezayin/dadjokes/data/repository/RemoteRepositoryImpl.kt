@@ -4,7 +4,7 @@ package com.thezayin.dadjokes.data.repository
 import com.thezayin.dadjokes.data.remote.ApiService
 import com.thezayin.dadjokes.domain.model.JokesModel
 import com.thezayin.dadjokes.domain.remote.repository.RemoteRepository
-import com.thezayin.core.utils.Response
+import com.thezayin.framework.utils.Response
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 

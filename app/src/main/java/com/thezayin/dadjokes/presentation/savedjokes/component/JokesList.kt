@@ -13,17 +13,19 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.thezayin.analytics.helpers.LocalAnalyticsHelper
-import com.thezayin.core.utils.extension.showInterstitialAd
 import com.thezayin.dadjokes.presentation.activity.MainViewModel
 import com.thezayin.dadjokes.presentation.activity.dialogs.LoadingDialog
 import com.thezayin.dadjokes.presentation.destinations.SavedJokeDetailScreenDestination
 import com.thezayin.dadjokes.presentation.savedjokes.SaveViewModel
+import com.thezayin.framework.extension.ads.showInterstitialAd
+import com.thezayin.framework.remote.RemoteConfig
 import kotlinx.coroutines.launch
 
 @Composable
 fun JokesList(
     mainViewModel: MainViewModel,
     saveViewModel: SaveViewModel,
+    remoteConfig: RemoteConfig,
     navigator: DestinationsNavigator
 ) {
     val isLoading = saveViewModel.isLoading.collectAsState().value.isLoading.value
@@ -51,7 +53,8 @@ fun JokesList(
                         showInterstitialAd(
                             googleManager = saveViewModel.googleManager,
                             activity = activity,
-                            analytics = analytics
+                            analytics = analytics,
+                            remoteConfig =remoteConfig
                         ) {
                             navigator.navigate(
                                 SavedJokeDetailScreenDestination(

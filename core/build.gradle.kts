@@ -40,9 +40,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":ads"))
-    implementation(project(":analytics"))
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -58,20 +55,4 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
-    //viewmodel and livedata
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.lifecycle.livedata.ktx)
-    implementation(libs.androidx.lifecycle.common.java8)
-
-    implementation(libs.timber)
-
-    //firebase
-    implementation(libs.firebase.analytics)
-    implementation(libs.firebase.crashlytics)
-    implementation(libs.firebase.perf)
-    implementation(libs.firebase.messaging)
-    implementation(libs.firebase.inappmessaging.display)
-    implementation(libs.firebase.config)
-
 }

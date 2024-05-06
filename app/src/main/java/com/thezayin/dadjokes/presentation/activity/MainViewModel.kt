@@ -6,10 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.android.gms.ads.nativead.NativeAd
 import com.thezayin.ads.GoogleManager
-import com.thezayin.core.utils.extension.native.createNativeInterstitialAd
 import com.thezayin.analytics.helpers.AnalyticsHelper
 import com.thezayin.dadjokes.presentation.activity.appupdate.AppUpdateStatus
 import com.thezayin.dadjokes.presentation.activity.appupdate.UpdateManager
+import com.thezayin.framework.extension.ads.native.createNativeInterstitialAd
+import com.thezayin.framework.remote.RemoteConfig
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -24,7 +25,8 @@ sealed interface UpdateMessage {
 class MainViewModel(
     private val updateManager: UpdateManager,
     val googleManager: GoogleManager,
-    val analyticsHelper: AnalyticsHelper
+    val analyticsHelper: AnalyticsHelper,
+    val remoteConfig: RemoteConfig
 ) : ViewModel() {
 
     private val updateStatus = updateManager.status

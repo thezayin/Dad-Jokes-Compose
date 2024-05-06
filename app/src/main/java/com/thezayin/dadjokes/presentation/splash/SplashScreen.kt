@@ -26,12 +26,12 @@ import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.thezayin.analytics.helpers.LocalAnalyticsHelper
 import com.thezayin.core.R
-import com.thezayin.core.utils.checkForInternet
-import com.thezayin.core.utils.extension.showInterstitialAd
-import com.thezayin.core.utils.getActivity
 import com.thezayin.dadjokes.presentation.activity.MainViewModel
 import com.thezayin.dadjokes.presentation.activity.dialogs.NetworkDialog
 import com.thezayin.dadjokes.presentation.destinations.HomeScreenDestination
+import com.thezayin.framework.extension.functions.checkForInternet
+import com.thezayin.framework.extension.ads.showInterstitialAd
+import com.thezayin.framework.extension.functions.getActivity
 import kotlinx.coroutines.delay
 import org.koin.compose.koinInject
 
@@ -60,7 +60,8 @@ fun SplashScreen(
                 showInterstitialAd(
                     activity = activity,
                     googleManager = googleManager,
-                    analytics = analytics
+                    analytics = analytics,
+                    remoteConfig = mainViewModel.remoteConfig
                 ) {
                     navigator.navigate(HomeScreenDestination)
                 }

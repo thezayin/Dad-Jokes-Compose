@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.thezayin.dadjokes.domain.model.JokesModel
 import com.thezayin.dadjokes.domain.remote.usecase.RemoteUseCase
-import com.thezayin.core.utils.Response
+import com.thezayin.framework.utils.Response
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
