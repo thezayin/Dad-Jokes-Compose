@@ -18,8 +18,8 @@ android {
         applicationId = "com.thezayin.dadjokes"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0.1"
+        versionCode = 5
+        versionName = "1.0.5"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -44,6 +44,7 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
+        dataBinding = true
         compose = true
     }
     composeOptions {
@@ -57,6 +58,10 @@ android {
 }
 
 dependencies {
+    implementation(project(":ads"))
+    implementation(project(":core"))
+    implementation(project(":analytics"))
+    implementation(project(":framework"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -104,7 +109,25 @@ dependencies {
     implementation(libs.firebase.inappmessaging.display)
     implementation(libs.firebase.config)
 
+    //force update
+    implementation(libs.app.update.ktx)
+
+    //lottie anim
+    implementation(libs.lottie.compose)
+
+    //room database
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.paging)
+    implementation(libs.androidx.room.runtime)
+
     implementation(libs.slf4j.api)
     implementation(libs.slf4j.simple)
-    implementation (libs.androidx.work.runtime)
+    implementation(libs.androidx.work.runtime)
+    implementation(libs.play.services.ads)
+    implementation(libs.guava)
+    implementation(libs.timber)
+
+    implementation (libs.app.update)
+    implementation (libs.app.update.ktx)
 }

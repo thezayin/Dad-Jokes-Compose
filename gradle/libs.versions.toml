@@ -1,7 +1,14 @@
 [versions]
-agp = "8.3.1"
+afAndroidSdk = "6.13.0"
+agp = "8.3.2"
+androidSdk = "3.35.1"
+appUpdateKtx = "2.1.0"
+converterGson = "2.10.0"
 core = "1.10.2"
-gradle = "8.1.4"
+gradle = "8.4.0"
+guava = "27.0.1-jre"
+hiltAndroid = "2.51"
+hiltNavigationCompose = "1.2.0"
 koin = "1.1.2"
 koin-version = "3.6.0-wasm-alpha2"
 koinAndroid = "3.5.3"
@@ -11,6 +18,7 @@ junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
 kotlinxSerializationJson = "1.6.2"
+lottieCompose = "6.2.0"
 orgSerlize = "1.6.10"
 lifecycle = "2.7.0"
 activityCompose = "1.8.2"
@@ -27,14 +35,30 @@ firebaseAppdistributionGradle = "4.2.0"
 firebaseMessaging = "20.1.7"
 firebaseInappmessagingDisplay = "20.4.1"
 firebaseConfig = "21.6.3"
+playServicesAds = "23.0.0"
+playServicesMeasurementApi = "21.6.2"
 slf4jApi = "2.0.5"
 slf4jSimple = "1.6.1"
+timber = "5.0.1"
+userMessagingPlatform = "2.2.0"
 workRuntime = "2.9.0"
+room = "2.6.1"
+appcompat = "1.6.1"
+material = "1.11.0"
 
 [libraries]
+af-android-sdk = { module = "com.appsflyer:af-android-sdk", version.ref = "afAndroidSdk" }
+android-sdk = { module = "com.amplitude:android-sdk", version.ref = "androidSdk" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 androidx-work-runtime = { module = "androidx.work:work-runtime", version.ref = "workRuntime" }
+app-update = { module = "com.google.android.play:app-update", version.ref = "appUpdateKtx" }
+app-update-ktx = { module = "com.google.android.play:app-update-ktx", version.ref = "appUpdateKtx" }
+converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+guava = { module = "com.google.guava:guava", version.ref = "guava" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltAndroid" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -65,6 +89,9 @@ ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "k
 ktor-client-logging = { module = "io.ktor:ktor-client-logging-jvm", version.ref = "ktor" }
 ktor-client-serialize = { module = "io.ktor:ktor-client-serialization", version.ref = "ktorSerialize" }
 
+lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "lottieCompose" }
+play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "playServicesAds" }
+play-services-measurement-api = { module = "com.google.android.gms:play-services-measurement-api", version.ref = "playServicesMeasurementApi" }
 raamcosta-destination-ksp = { module = "io.github.raamcosta.compose-destinations:ksp", version.ref = "core" }
 raamcosta-destination-core = { module = "io.github.raamcosta.compose-destinations:core", version.ref = "core" }
 google-services = { group = "com.google.gms", name = "google-services", version.ref = "googleServicesVersion" }
@@ -77,10 +104,21 @@ firebase-appdistribution-gradle = { group = "com.google.firebase", name = "fireb
 firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebaseMessaging" }
 firebase-inappmessaging-display = { group = "com.google.firebase", name = "firebase-inappmessaging-display", version.ref = "firebaseInappmessagingDisplay" }
 firebase-config = { group = "com.google.firebase", name = "firebase-config", version.ref = "firebaseConfig" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "converterGson" }
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4jApi" }
 slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4jSimple" }
+
+androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "room" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+user-messaging-platform = { module = "com.google.android.ump:user-messaging-platform", version.ref = "userMessagingPlatform" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 serialization-json = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "orgSerlize" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
