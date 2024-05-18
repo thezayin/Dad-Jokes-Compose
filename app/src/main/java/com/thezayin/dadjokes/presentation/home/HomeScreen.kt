@@ -2,13 +2,14 @@ package com.thezayin.dadjokes.presentation.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -20,6 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -65,15 +67,6 @@ fun HomeScreen(
         LoadingDialog(viewModel = mainViewModel)
     }
 
-    val analyticsHelper = LocalAnalyticsHelper.current
-    analyticsHelper.logEvent(
-        AnalyticsEvent(
-            type = AnalyticsEvent.Types.SCREEN_VIEW,
-            extras = listOf(
-                AnalyticsEvent.Param(AnalyticsEvent.ParamKeys.SCREEN_NAME, "Home Screen"),
-            ),
-        ),
-    )
     ComposableLifecycle { _, event ->
         when (event) {
             Lifecycle.Event.ON_START -> {
@@ -101,41 +94,41 @@ fun HomeScreen(
         topBar = {
             HomeTopBar(navigator = navigator, modifier = Modifier)
         },
-        bottomBar = {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Bottom
-            ) {
-                NextJokeButton(viewModel = homeViewModel, modifier = Modifier)
-                if (mainViewModel.remoteConfig.showNativeAdOnHome) {
-                    GoogleNativeAd(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        nativeAd = nativeAd.value,
-                        style = GoogleNativeAdStyle.Small
-                    )
-                }
-            }
-        }
     ) { paddingValues ->
-        Box(
+        Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
                 .statusBarsPadding()
                 .navigationBarsPadding()
-                .background(color = colorResource(id = R.color.background))
+                .verticalScroll(rememberScrollState())
+                .background(color = colorResource(id = R.color.background)),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
             JokeTextCard(
                 jokeModel = jokeModel,
-                modifier = Modifier.align(Alignment.Center),
+                modifier = Modifier.padding(top = 40.dp),
                 saveViewModel = saveViewModel,
                 from = "home",
                 navigator = navigator,
                 id = null
             )
+            Column(
+                modifier = Modifier.padding(top =40.dp)
+                    .fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Bottom
+            ) {
+                NextJokeButton(viewModel = homeViewModel, modifier = Modifier)
+                GoogleNativeAd(
+                    modifier = Modifier
+                        .padding(top = 20.dp)
+                        .fillMaxWidth(),
+                    nativeAd = nativeAd.value,
+                    style = GoogleNativeAdStyle.Small
+                )
+            }
         }
     }
 }

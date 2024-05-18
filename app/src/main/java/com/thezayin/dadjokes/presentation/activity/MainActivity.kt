@@ -12,6 +12,7 @@ import com.thezayin.dadjokes.presentation.theme.DadJokesTheme
 import com.thezayin.framework.extension.ads.showAppOpenAd
 import com.thezayin.framework.utils.Constants.TOPIC
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class MainActivity : ComponentActivity() {
     private val viewModel: MainViewModel by viewModel()
@@ -19,9 +20,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
         val analyticsHelper = viewModel.analyticsHelper
-        viewModel.googleManager.init(this)
-        viewModel.googleManager.initOnLastConsent()
-
+        if (viewModel.remoteConfig.initAds) {
+            viewModel.googleManager.init(this)
+            viewModel.googleManager.initOnLastConsent()
+        }
         setContent {
             CompositionLocalProvider(
                 LocalAnalyticsHelper provides analyticsHelper,

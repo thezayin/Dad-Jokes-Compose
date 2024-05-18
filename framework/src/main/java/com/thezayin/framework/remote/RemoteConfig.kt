@@ -12,11 +12,20 @@ private const val SHOW_NATIVE_AD_ON_SAVED_SCREEN = "show_native_ad_on_saved_scre
 private const val SHOW_AD_ON_SAVED_AD_CLICK = "show_ad_on_saved_ad_click"
 private const val SHOW_NATIVE_AD_ON_HOME = "show_native_ad_on_home"
 private const val SHOW_AD_ON_APP_OPEN = "show_ad_on_app_open"
+private const val INIT_ADS = "init_ads"
 
 @Suppress("DEPRECATION")
 class RemoteConfig(
 ) {
-    private val default: Map<String, Any> = mapOf()
+    private val default: Map<String, Any> = mapOf(
+        SHOW_AD_ON_SAVE_SCREEN_SELECTION to false,
+        SHOW_NATIVE_AD_ON_LOADING_DIALOG to false,
+        SHOW_NATIVE_AD_ON_SAVED_SCREEN to false,
+        SHOW_AD_ON_SAVED_AD_CLICK to false,
+        SHOW_NATIVE_AD_ON_HOME to false,
+        SHOW_AD_ON_APP_OPEN to false,
+        INIT_ADS to false
+    )
     private val config = FirebaseRemoteConfig.getInstance().apply {
         setConfigSettingsAsync(remoteConfigSettings {
             minimumFetchIntervalInSeconds = 0
@@ -26,6 +35,9 @@ class RemoteConfig(
             Log.d("RemoteConfig", "fetchAndActivate: ${all.mapValues { (k, v) -> v.asString() }}")
         }
     }
+
+    val initAds: Boolean
+        get() = config[INIT_ADS].asBoolean()
 
     val showAdOnSaveScreenSelection: Boolean
         get() = config[SHOW_AD_ON_SAVE_SCREEN_SELECTION].asBoolean()

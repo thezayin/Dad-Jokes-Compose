@@ -20,7 +20,6 @@ import com.thezayin.dadjokes.domain.remote.repository.RemoteRepository
 import com.thezayin.dadjokes.domain.remote.usecase.RemoteUseCase
 import com.thezayin.dadjokes.domain.remote.usecase.RemoteUseCaseImpl
 import com.thezayin.dadjokes.presentation.activity.MainViewModel
-import com.thezayin.dadjokes.presentation.activity.appupdate.UpdateManager
 import com.thezayin.dadjokes.presentation.home.HomeViewModel
 import com.thezayin.dadjokes.presentation.savedjokes.SaveViewModel
 import com.thezayin.framework.remote.RemoteConfig
@@ -34,7 +33,6 @@ import org.koin.dsl.module
 @RequiresApi(Build.VERSION_CODES.P)
 val appModule = module {
     single { provideDatabase(androidContext()) }
-    single { UpdateManager(androidContext()) }
     singleOf(::RemoteConfig)
     singleOf(::ApiService)
     singleOf(::provideDao)

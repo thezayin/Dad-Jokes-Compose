@@ -23,7 +23,11 @@ class LocalRepositoryImpl(
     override suspend fun getJokeById(id: String): Flow<Response<JokesModel>> = flow {
         try {
             emit(Response.Loading)
-            val response = daoImpl.getJokeById(id)
+            val response = daoImpl?.getJokeById(id)
+            if (response == null) {
+                emit(Response.Error("Joke not found"))
+                return@flow
+            }
             emit(Response.Success(response))
         } catch (e: Exception) {
             emit(Response.Error(e.localizedMessage ?: "Unexpected error occurred"))

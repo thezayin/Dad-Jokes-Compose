@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.thezayin.dadjokes.domain.model.JokesModel
 import com.thezayin.dadjokes.domain.remote.usecase.RemoteUseCase
 import com.thezayin.framework.utils.Response
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -15,8 +16,7 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val apiCall: RemoteUseCase,
-) :
-    ViewModel() {
+) : ViewModel() {
 
     private val _jokeText = MutableStateFlow(GetJokeState())
     val jokeText = _jokeText.asStateFlow()
@@ -28,7 +28,7 @@ class HomeViewModel(
         getRandomJoke()
     }
 
-    fun getRandomJoke() = viewModelScope.launch {
+    fun getRandomJoke() = viewModelScope.launch(Dispatchers.IO) {
         apiCall().collect { response ->
             when (response) {
                 is Response.Success -> {

@@ -52,6 +52,7 @@ android-sdk = { module = "com.amplitude:android-sdk", version.ref = "androidSdk"
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 androidx-work-runtime = { module = "androidx.work:work-runtime", version.ref = "workRuntime" }
+app-update = { module = "com.google.android.play:app-update", version.ref = "appUpdateKtx" }
 app-update-ktx = { module = "com.google.android.play:app-update-ktx", version.ref = "appUpdateKtx" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
