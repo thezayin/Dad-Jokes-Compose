@@ -6,10 +6,10 @@ plugins {
 
 android {
     namespace = "com.thezayin.ads"
-    compileSdk = 34
+    compileSdk =  libs.versions.compileSdkVersion.get().toInt()
 
     defaultConfig {
-        minSdk = 24
+        minSdk = libs.versions.minSdkVersion.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -39,7 +39,6 @@ android {
 
 dependencies {
 
-    implementation(project(":core"))
     implementation(project(":analytics"))
 
     implementation(libs.androidx.core.ktx)

@@ -1,7 +1,6 @@
 package com.thezayin.ads
 
 import android.app.Activity
-import android.content.Context
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
@@ -9,21 +8,18 @@ import com.google.android.gms.ads.appopen.AppOpenAd
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.rewarded.RewardedAd
-import com.thezayin.ads.builders.GoogleAppOpenAdBuilder
-import com.thezayin.ads.builders.GoogleInterstitialAdBuilder
-import com.thezayin.ads.builders.GoogleNativeAdBuilder
-import com.thezayin.ads.builders.GoogleRewardedAdBuilder
-import com.thezayin.ads.ump.ConsentManager
+import com.thezayin.ads.builders.GoogleAppOpenAdLoader
+import com.thezayin.ads.builders.GoogleInterstitialAdLoader
+import com.thezayin.ads.builders.GoogleNativeAdLoader
+import com.thezayin.ads.builders.GoogleRewardedAdLoader
 import com.thezayin.ads.utils.AdUnit
 
-class GoogleManager(
-    private val context: Context, private val consentManager: ConsentManager
-) {
+class GoogleManager() {
     private val debug get() = BuildConfig.DEBUG
-    private var googleInterAd: GoogleAd<InterstitialAd>? = null
-    private var googleAppOpen: GoogleAd<AppOpenAd>? = null
-    private var googleNativeAd: GoogleAd<NativeAd>? = null
-    private var googleRewardedAd: GoogleAd<RewardedAd>? = null
+    private var native: GoogleNativeAdLoader? = null
+    private var rewardedAd: GoogleRewardedAdLoader? = null
+    private var interstitialAd: GoogleInterstitialAdLoader? = null
+    private var appOpenAd: GoogleAppOpenAdLoader? = null
 
     private val testDeviceIds: List<String> = listOf(
         AdRequest.DEVICE_ID_EMULATOR, "990C1C4A58DB7FED6AF5D9A33E3DD1FF",//Samsung,
@@ -31,38 +27,58 @@ class GoogleManager(
     )
 
     fun init(activity: Activity) {
-        consentManager.getUserConsent(activity = activity,
-            onConsentGranted = { loadAds() },
-            onError = { loadAds() })
-    }
-
-    fun initOnLastConsent() = consentManager.ifCanRequestAds { loadAds() }
-
-    private fun loadAds() {
-        MobileAds.initialize(context)
+        MobileAds.initialize(activity)
         if (debug) MobileAds.setRequestConfiguration(
             RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
         )
-
-        googleRewardedAd = ::GoogleRewardedAdBuilder.from(AdUnit.rewarded)
-        googleInterAd = ::GoogleInterstitialAdBuilder.from(AdUnit.interstitial)
-        googleAppOpen = ::GoogleAppOpenAdBuilder.from(AdUnit.appOpen)
-        googleNativeAd = ::GoogleNativeAdBuilder.from(AdUnit.native)
+        native = GoogleNativeAdLoader(activity, AdUnit.native.resolve(debug))
+        rewardedAd = GoogleRewardedAdLoader(activity, AdUnit.rewarded.resolve(debug))
+        interstitialAd = GoogleInterstitialAdLoader(activity, AdUnit.interstitial.resolve(debug))
+        appOpenAd = GoogleAppOpenAdLoader(activity, AdUnit.appOpen.resolve(debug))
     }
 
-    private fun <T> ((Context, String) -> AdBuilder<T>).from(unit: AdUnit) = GoogleAd(
-        this(context, unit.resolve(debug)).withAnalytics()
-    )
-
-    private fun <T> AdBuilder<T>.withAnalytics() = apply {
-        onPaid {
-
+    fun getNativeAd(onAdLoaded: (NativeAd?) -> Unit) {
+        native?.loadAd { ad ->
+            onAdLoaded(ad)
         }
     }
 
-    fun createAppOpenAd() = ifNotSubscribed { googleAppOpen?.get() }
-    fun createInterstitialAd() = ifNotSubscribed { googleInterAd?.get() }
-    fun createNativeAd(): NativeAd? = ifNotSubscribed { googleNativeAd?.get() }
-    fun createRewardedAd() = ifNotSubscribed { googleRewardedAd?.get() }
-    private fun <T : Any?> ifNotSubscribed(block: () -> T?) = block()
+    fun getInterstitialAd(onLoading: () -> Unit, onAdReady: (InterstitialAd?) -> Unit) {
+        interstitialAd?.loadAd(
+            onAdLoaded = { interstitialAd ->
+                onAdReady(interstitialAd)
+            }, onAdLoading = {
+                onLoading()
+            }, onAdFailed = {
+                onAdReady(null)
+            }) ?: run {
+            onAdReady(null)
+        }
+    }
+
+    fun getRewardedAd(onLoading: () -> Unit, onAdReady: (RewardedAd?) -> Unit) {
+        rewardedAd?.loadAd(
+            onAdLoaded = { rewardedAd ->
+                onAdReady(rewardedAd)
+            }, onAdLoading = {
+                onLoading()
+            }, onAdFailed = {
+                onAdReady(null)
+            }) ?: run {
+            onAdReady(null)
+        }
+    }
+
+    fun getAppOpenAd(onLoading: () -> Unit, onAdReady: (AppOpenAd?) -> Unit) {
+        appOpenAd?.loadAd(
+            onAdLoaded = { appOpenAd ->
+                onAdReady(appOpenAd)
+            }, onAdLoading = {
+                onLoading()
+            }, onAdFailed = {
+                onAdReady(null)
+            }) ?: run {
+            onAdReady(null)
+        }
+    }
 }

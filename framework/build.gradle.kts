@@ -1,15 +1,19 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.serialization.json)
+    alias(libs.plugins.compose.compiler)
     id("kotlin-kapt")
+    id("kotlinx-serialization")
+    id("kotlin-parcelize")
 }
 
 android {
     namespace = "com.thezayin.framework"
-    compileSdk = 34
+    compileSdk =  libs.versions.compileSdkVersion.get().toInt()
 
     defaultConfig {
-        minSdk = 24
+        minSdk = libs.versions.minSdkVersion.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -32,15 +36,6 @@ android {
 
     kotlinOptions {
         jvmTarget = "1.8"
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
-    }
-
-    buildFeatures {
-        compose = true
-        dataBinding = true
     }
 }
 
@@ -68,7 +63,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.common.java8)
-
     implementation(libs.timber)
 
     //firebase

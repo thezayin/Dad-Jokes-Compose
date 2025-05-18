@@ -2,7 +2,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.serialization.json)
-    id("com.google.devtools.ksp") version "1.9.22-1.0.17"
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.ksp)
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
     id("com.google.firebase.firebase-perf")
@@ -12,14 +13,14 @@ plugins {
 
 android {
     namespace = "com.thezayin.dadjokes"
-    compileSdk = 34
+    compileSdk = libs.versions.compileSdkVersion.get().toInt()
 
     defaultConfig {
         applicationId = "com.thezayin.dadjokes"
-        minSdk = 24
-        targetSdk = 34
-        versionCode = 5
-        versionName = "1.0.5"
+        minSdk = libs.versions.minSdkVersion.get().toInt()
+        targetSdk = libs.versions.targetSdkVersion.get().toInt()
+        versionCode = 8
+        versionName = "1.0.0.8"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -36,20 +37,16 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
-        dataBinding = true
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
-    }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -58,10 +55,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":ads"))
-    implementation(project(":core"))
-    implementation(project(":analytics"))
-    implementation(project(":framework"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -71,6 +64,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -96,10 +90,13 @@ dependencies {
     implementation(libs.ktor.client.android)
     implementation(libs.ktor.client.logging)
     implementation(libs.ktor.client.serialize)
+    implementation(libs.ktor.client.cio)
+    implementation(libs.ktor.server.content.negotiation)
+    implementation(libs.ktor.serialization.kotlinx.json)
+    implementation(libs.timber)
 
-    //Custom Navigation
-    implementation(libs.raamcosta.destination.core)
-    ksp(libs.raamcosta.destination.ksp)
+    //navigation
+    implementation(libs.androidx.navigation.compose)
 
     //firebase
     implementation(libs.firebase.analytics)
@@ -109,25 +106,16 @@ dependencies {
     implementation(libs.firebase.inappmessaging.display)
     implementation(libs.firebase.config)
 
-    //force update
-    implementation(libs.app.update.ktx)
-
-    //lottie anim
-    implementation(libs.lottie.compose)
-
     //room database
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.paging)
     implementation(libs.androidx.room.runtime)
-
-    implementation(libs.slf4j.api)
-    implementation(libs.slf4j.simple)
+    implementation(libs.coil.gif)
+    implementation(libs.coil.compose)
     implementation(libs.androidx.work.runtime)
     implementation(libs.play.services.ads)
-    implementation(libs.guava)
     implementation(libs.timber)
-
-    implementation (libs.app.update)
-    implementation (libs.app.update.ktx)
+    implementation(libs.sdp.compose)
+    implementation(libs.androidx.material.icons.extended)
 }
