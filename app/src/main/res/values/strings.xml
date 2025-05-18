@@ -1,3 +1,40 @@
 <resources>
     <string name="app_name">Dad Jokes</string>
+    <string name="install">Install</string>
+    <string name="ads_title">ad</string>
+    <string name="ad">Ad</string>
+
+    <string name="settings_title">Settings</string>
+    <string name="back_button_label">Back</string>
+
+    <string name="others">Others</string>
+    <string name="leave_rating_review">Leave a rating/review</string>
+    <string name="about_us">About Us</string>
+
+    <string name="legal">Legal</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="terms_conditions">Terms &amp; Conditions</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="privacy_policy_icon">Privacy Policy Icon</string>
+    <string name="terms_conditions_icon">Terms &amp; Conditions Icon</string>
+    <string name="contact_us_icon">Contact Us Icon</string>
+    <string name="loading_img">Loading…</string>
+    <string name="loading_fav_img">Loading Images.…</string>
+    <string name="loading_settings">Loading Settings…</string>
+    <string name="loading">Loading…</string>
+    <string name="finishing_up">Finishing Up…</string>
+    <string name="please_wait">Please wait…</string>
+    <string name="almost_there">Almost There…</string>
+    <string name="preview_title">Preview</string>
+    <string name="cd_back">Back</string>
+    <string name="cd_preview_image">Image preview</string>
+    <string name="cd_like">Like</string>
+    <string name="cd_unlike">Unlike</string>
+    <string name="cd_share">Share</string>
+    <string name="cd_download">Download</string>
+    <string name="toast_failed_load">Failed to load image</string>
+    <string name="toast_downloaded">Image saved</string>
+    <string name="share_via">Share via</string>
+    <string name="cd_reset_zoom">Reset zoom</string>
+
 </resources>
